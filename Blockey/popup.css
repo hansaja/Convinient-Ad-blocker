@@ -1,0 +1,35 @@
+body{
+    width: 300px;
+}
+
+img{
+    width: 40px;
+}
+h1{
+    font-size: 18px;
+    margin: 0;
+}
+#pop-header{
+    align-items: center;
+    vertical-align: text-bottom;
+    margin-right: 10px;
+}
+#popup-body{
+    background-color: aqua;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+#popup-body-content{
+    background-color: azure;
+    text-align: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+#popup-body-title{
+    margin-left: 5px;
+}
+
+#more{
+    margin-left: 230px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="blockedsites.js"></script>
+    <link rel="stylesheet" href="more.css">
+</head>
+
+<body>
+
+    <h2>Blockey</h2>
+
+    <div class="row">
+        <div class="column left" style="background-color:#aaa;">
+            <div class="button-container">
+                <a href="more.html"><button class="menu-buttons">Report</button></a>
+                <a href="block.html"><button class="menu-buttons">Blocked Sites</button></a>
+                <a href="blockad.html"><button class="menu-buttons"> Blocked Ad domains</button></a>
+            </div>
+        </div>
+        <div class="column right" style="background-color:#bbb;" id="abc">
+
+            <div id="blockedsites">
+                <div class="blocked-sites">
+                    <h1>Blocked Sites</h1>
+
+
+                    <div class="form">
+                        <label for="customLinks">Enter the Link you should block the link</label>
+                        <input type="text" name="customLinks" id="customLinks">
+                        <button>Add</button>
+                    </div>
+                </div>
+            </div>
+            <h1>Block Site</h1>
+
+            <textarea id="textarea" rows="10" cols="30" spellcheck="false"></textarea>
+            <br>
+
+            <button id="save">Save</button>
+            <strong>Enabled?</strong><input id="checkbox" type="checkbox">
+
+            <script src="option.js"></script>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

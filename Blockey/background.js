@@ -13,13 +13,29 @@ chrome.contextMenus.create({
 this is main funtion of ad blocking process.
 it use chrome's webRequest API to block given ad domains
  */
+
 chrome.webRequest.onBeforeRequest.addListener(
-    function (details) { 
-        return { cancel: true }; 
-    },
-    { urls: blockList },
-    ["blocking"]
-);
+  function(details) { 
+    // alert(JSON.stringify(details))
+    // if(defaultUrls.indexOf(details.url) >=0 ){
+      chrome.storage.local.get(["blockedCount"], function (local) {
+        if (!local["blockedCount"] ) {
+          chrome.storage.local.set({ "blockedCount": 1 }, function(){
+            // alert('initialized to:  1')
+          });
+        } else {
+          chrome.storage.local.set({ "blockedCount": parseInt(local["blockedCount"] + 1) }, function(){
+            chrome.storage.local.get(["blockedCount"], function(local) {
+              // alert(`blocked count : ${local["blockedCount"]}`)
+            })
+          });
+        }
+      });
+    // }
+    return { cancel: true }},
+  { urls: blockList },
+  ["blocking", "requestBody"]
+)
 
 /*
 this is used to check safty of a  URL is safe or not
@@ -38,4 +54,31 @@ function checkUrl(link) {
 
 }
 
+chrome.runtime.onInstalled.addListener(function () {
+    chrome.storage.local.get(["blocked", "enabled"], function (local) {
+      if (!Array.isArray(local.blocked)) {
+        chrome.storage.local.set({ blocked: [] });
+      }
+  
+      if (typeof local.enabled !== "boolean") {
+        chrome.storage.local.set({ enabled: false });
+      }
+    });
+  });
+  
+  chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
+    const url = changeInfo.pendingUrl || changeInfo.url;
+    if (!url || !url.startsWith("http")) {
+      return;
+    }
+  
+    const hostname = new URL(url).hostname;
+  
+    chrome.storage.local.get(["blocked", "enabled"], function (local) {
+      const { blocked, enabled } = local;
+      if (Array.isArray(blocked) && enabled && blocked.find(domain => hostname.includes(domain))) {
+        chrome.tabs.remove(tabId);
+      }
+    });
+  });
 

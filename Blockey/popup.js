@@ -1,3 +1,4 @@
+/*
 window.onload = function () {
     document.getElementById('more').onclick = function () {
         //alert("open");
@@ -7,4 +8,10 @@ window.onload = function () {
     }
 }
 
+*/
 
+document.addEventListener('DOMContentLoaded', function () {
+    chrome.storage.local.get(["blockedCount"], function(local) {
+        document.getElementById("blocked-count").innerHTML = local["blockedCount"]
+    });
+});

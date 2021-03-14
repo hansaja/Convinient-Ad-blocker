@@ -27,17 +27,26 @@
     display: table;
     clear: both;
 }
-.button-container{
+.button-container {
     width: 80px;
     height: 50px;
-    margin-top: 100px;
+    margin-top: 30px;
     margin-left: 25px;
 }
-.menu-buttons{
-    width: 250px;
+.menu-buttons {
+    width: 262px;
     padding: 20px;
-    margin-top: 10px;
+    margin-top: 33px;
+    height: 161px;
+    background-color: white;
+    font-size: 18px;
 }
+
+.menu-buttons:hover {
+    background-color: rgb(131, 131, 241);
+    
+}
+
 .reort-data{
     width: 240px;
     height: 90px;
@@ -48,4 +57,27 @@
 #iframe{
     width: 500px;
     height: 500px;
+}
+
+#col-right{
+    border: black;
+    border-style: ridge ;
+}
+
+#col-left{
+    border: black;
+    border-style: ridge ;
+}
+
+.right-container {
+    margin-left: 25px;
+}
+
+#save {
+    margin-top: 14px;
+    margin-right: 20px;
+}
+
+#save:hover{
+    background-color: rgb(131, 131, 241);
 }

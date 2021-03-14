@@ -1,9 +1,9 @@
 {
     "manifest_version" : 2,
     "name": "Blockey",
-    "description": "Blockings ads and help you to be secure in the Internet ",
-    "version" : "2.0.0",
-    "options_page": "more.html",
+    "description": "Blockings ads and help to be secure in wwb",
+    "version" : "3.0.0",
+    "options_page": "block.html",
     "icons": {
         "128" : "icons_128.png",
         "16" : "icon.png"
@@ -12,6 +12,10 @@
         {
           "matches": ["https://*.youtube.com/*"],
           "js": ["youtube.js"]
+        },
+        {
+          "matches": ["<all_urls>"],
+          "js": ["main.js"]
         }
       ],
     "background": {
@@ -22,6 +26,9 @@
         "default_icon": "icon.png",
         "default_popup": "popup.html"
     },
+    "web_accessible_resources":[
+    "options/*"
+  ],  
     "permissions": [
         "activeTab",
         "contextMenus",

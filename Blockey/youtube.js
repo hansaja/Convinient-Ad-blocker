@@ -1,3 +1,4 @@
+
 const click = (clazz) => {
     const buttons = document.getElementsByClassName(clazz);
     for (const button of buttons) {
@@ -11,3 +12,4 @@ const click = (clazz) => {
     click("ytp-ad-overlay-close-button");
   }, 300);
   console.log("No More Ad - Init");
+

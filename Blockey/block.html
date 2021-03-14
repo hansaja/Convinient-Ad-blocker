@@ -8,44 +8,34 @@
 </head>
 
 <body>
-
-    <h2>Blockey</h2>
-
-    <div class="row">
-        <div class="column left" style="background-color:#aaa;">
-            <div class="button-container">
-                <a href="more.html"><button class="menu-buttons">Report</button></a>
-                <a href="block.html"><button class="menu-buttons">Blocked Sites</button></a>
-                <a href="blockad.html"><button class="menu-buttons"> Blocked Ad domains</button></a>
-            </div>
-        </div>
-        <div class="column right" style="background-color:#bbb;" id="abc">
-
-            <div id="blockedsites">
-                <div class="blocked-sites">
-                    <h1>Blocked Sites</h1>
-
-
-                    <div class="form">
-
-                        <label for="customLinks">Enter the website links you want to block</label>                        
-                        <input type="text" name="customLinks" id="customLinks">
-                        <button>Add</button>
-                    </div>
+    <div class="container">
+        <h2>Blockey</h2>
+        <div class="row">
+            <div class="column left" style="background-color:rgb(62, 166, 192);" id="col-left">
+                <div class="button-container">
+                    <a href="block.html"><button class="menu-buttons">Blocked Sites</button></a>
+                    <a href="blockad.html"><button class="menu-buttons"> Blocked Ad domains</button></a>
                 </div>
             </div>
-            <h1>Block Site</h1>
 
-            <textarea id="textarea" rows="10" cols="30" spellcheck="false"></textarea>
-            <br>
+            <div class="column right" id="col-right">
+                <div class="right-container">
 
-            <button id="save">Save</button>
-            <strong>Enabled?</strong><input id="checkbox" type="checkbox">
+                    <h1>Block Site</h1>
+    
+                    <textarea id="textarea" rows="10" cols="30" spellcheck="false"></textarea>
+                    <br>
+    
+                    <button id="save">Save</button>
+                    <strong>Enabled?</strong><input id="checkbox" type="checkbox">    
+                </div>
 
-            <script src="option.js"></script>
+                <script src="option.js"></script>
 
+            </div>
         </div>
     </div>
+
 
 
 </body>

@@ -2,12 +2,25 @@ body{
     width: 300px;
 }
 
+.container{
+    margin-top : 0;
+}
+
+#header-image {
+    margin-left: 0px;
+    margin-top: -5px;
+    position: absolute;
+}
+
 img{
     width: 40px;
 }
-h1{
+
+h1 {
     font-size: 18px;
-    margin: 0;
+    margin-left: 60px;
+    margin-bottom: -14px;
+    padding-top: 8px;
 }
 #pop-header{
     align-items: center;
@@ -26,10 +39,16 @@ h1{
     margin-left: 5px;
     margin-top: 5px;
 }
+
+#more-button{
+    margin-top: -20px;
+}
 #popup-body-title{
     margin-left: 5px;
 }
 
 #more{
     margin-left: 230px;
+    background-color: #e7e7e7; color: black;
+    display: inline-block;
 }

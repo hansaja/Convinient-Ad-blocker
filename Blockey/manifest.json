@@ -1,7 +1,7 @@
 {
     "manifest_version" : 2,
     "name": "Blockey",
-    "description": "Blockings ads and help to be secure in wwb",
+    "description": "Blocks ads and help you to be secure in the WWW",
     "version" : "3.0.0",
     "options_page": "block.html",
     "icons": {

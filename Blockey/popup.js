@@ -9,7 +9,7 @@ window.onload = function () {
 }
 
 */
-
+//sends the number of ads blocked to the popup.html page.
 document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get(["blockedCount"], function(local) {
         document.getElementById("blocked-count").innerHTML = local["blockedCount"]

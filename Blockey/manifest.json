@@ -1,41 +1,56 @@
 {
-    "manifest_version" : 2,
-    "name": "Blockey",
-    "description": "Blocks ads and help you to be secure in the WWW",
-    "version" : "3.0.0",
-    "options_page": "block.html",
-    "icons": {
-        "128" : "icons_128.png",
-        "16" : "icon.png"
+  "manifest_version": 3,
+  "name": "Blockey",
+  "description": "Blocks ads and helps you stay secure on the web",
+  "version": "4.0.0",
+  "icons": {
+    "16": "icon.png",
+    "128": "icons_128.png"
+  },
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "options_page": "block.html",
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["youtube.js"]
     },
-    "content_scripts": [
-        {
-          "matches": ["https://*.youtube.com/*"],
-          "js": ["youtube.js"]
-        },
-        {
-          "matches": ["<all_urls>"],
-          "js": ["main.js"]
-        }
-      ],
-    "background": {
-        "scripts": ["blockedSites.js","background.js"]      
-          
-    },
-    "browser_action": {
-        "default_icon": "icon.png",
-        "default_popup": "popup.html"
-    },
-    "web_accessible_resources":[
-    "options/*"
-  ],  
-    "permissions": [
-        "activeTab",
-        "contextMenus",
-        "webRequest",
-        "webRequestBlocking",
-        "<all_urls>",
-        "tabs",
-        "storage"
+    {
+      "matches": ["http://*/*"],
+      "js": ["main.js"]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ad_blocklist",
+        "enabled": true,
+        "path": "rules.json"
+      }
     ]
+  },
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "scripting",
+    "alarms",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["options/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

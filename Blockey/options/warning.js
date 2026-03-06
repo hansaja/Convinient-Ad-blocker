@@ -1,30 +1,42 @@
-/*This function takes the parameter 'get_url' from main.js file. 
-Extracts the url from it, by compairing it to a regular expression */
+(function () {
+  "use strict";
 
-var urlParam = function(name, w){
-    w = w || window;
-    var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
-        val = w.location.search.match(rx);
-    return !val ? '':val[1];
-}
-var url_id = urlParam('url'); //Extracted url is set to this variable
+  var params = new URLSearchParams(window.location.search);
+  var rawUrl = params.get("url");
 
-//exit button function ; close the warning.html page
-document.getElementById('exit').addEventListener('click', function (re) {
-	chrome.tabs.getCurrent(function(tab) {
-    chrome.tabs.remove(tab.id, function() { });
-});
-})
+  if (!rawUrl) return;
 
-/*Continue button fuction, lets the user enter the non https website. 
-Next time thuer visits thus site it won't be blocked because it is saved in storage */
-document.getElementById('continue').addEventListener('click', function (re) {
-	var appr = +new Date();
-	var urlee = new URL('', url_id);
-	var hostnamee = urlee.hostname
-	// console.log(hostnamee);
-	chrome.storage.sync.set({[appr]: hostnamee},function (req) {
-		console.log('done')
-		window.location.href = url_id
-	})
-}) 
+  var hostname;
+  try {
+    hostname = new URL(rawUrl).hostname;
+  } catch (e) {
+    console.error("[Blockey] Invalid URL in warning page:", rawUrl);
+    return;
+  }
+
+  // Exit: close this tab
+  document.getElementById("exit").addEventListener("click", function () {
+    chrome.tabs.getCurrent(function (tab) {
+      if (tab) chrome.tabs.remove(tab.id);
+    });
+  });
+
+  // Continue: save hostname to approved list and navigate
+  document.getElementById("continue").addEventListener("click", function () {
+    chrome.storage.sync.get({ approvedHttpHosts: [] }, function (data) {
+      var hosts = Array.isArray(data.approvedHttpHosts)
+        ? data.approvedHttpHosts
+        : [];
+      if (!hosts.includes(hostname)) {
+        hosts.push(hostname);
+      }
+      chrome.storage.sync.set({ approvedHttpHosts: hosts }, function () {
+        if (chrome.runtime.lastError) {
+          console.error("[Blockey] Failed to save approved host:", chrome.runtime.lastError);
+          return;
+        }
+        window.location.href = rawUrl;
+      });
+    });
+  });
+})();
